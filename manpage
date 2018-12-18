@@ -1,0 +1,30 @@
+NAME
+	custom_demo
+SYSNOPSIS
+	custom_demo option...[FILENAME]
+DESCRIPTION
+	-h  	Display this command options
+		Usage:  custom_demo -h
+
+	-q	List file attributes and print on the standard output
+		Usage:  custom_demo -q file
+
+	-r	Read file contents and print on the standard output, can
+		not read directory
+		Usage:  custom_demo -r [-o -l] file
+		-o: set file offset
+		-l: Specify read length
+		
+	-c  	Create new file or directory and set mode, if file or directory
+		exsit you can cover it or not cover it
+		Usage: 	custom_demo -c [-f] file mode
+			custom_demo -c directory mode
+	
+	-d	Remove file or directory
+		Usage:  custom_demo -d file/directory
+
+	-p	Copy SOURCE content and attributes to DEST
+		Usage:  custom_demo -p source destination
+
+	-s	create a soft link to TARGET with the name LINK_NAME
+		Usage:  custom_demo -s source destination
