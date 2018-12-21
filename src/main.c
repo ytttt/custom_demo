@@ -9,58 +9,76 @@ int main(int argc, char *argv[])
 	int offset = 0,length = 0;
 	int readenable = 0; 
 	int createnable = 0;
+	int n = 0;
 	while( (opt = getopt(argc,argv,optstring)) != -1 )
 	{
 		switch (opt)
 		{
 			case 'h':
-				if(argc != optind)
+				n ++;
+				if(argc != optind || n != 1)
 				{
 					quit(-1);
 				}
-				readfile("/home/yt/custom_demo/manpage",0,0);
+				readfile("manpage",0,0);
 				quit(0);
 			case 'q':
-				if(optind < 2 ||argc - optind != 1)
+				n ++;
+				if(optind < 2 || argc - optind != 1 || n != 1)
 				{
 					quit(-1);
 				}
 				getprops(argv[optind]);
 				quit(0);
 			case 'r':
+				n ++;
+				if (n != 1)
+				quit(-1);
 				readenable = 1;
 				break;
 			case 'c':
+				n ++;
+				if (n != 1)
+				quit(-1);
 				createnable = 1;
 				break;
 			case 'd':
-				if(optind < 2 ||argc - optind != 1)
+				n ++;
+				if(optind < 2 ||argc - optind != 1 || n != 1)
 				{
 					quit(-1);
 				}
 				delete(argv[optind]);
 				quit(0);
 			case 'p':
-				if(optind < 2 ||argc - optind != 2)
+				n ++;
+				if(optind < 2 ||argc - optind != 2 || n != 1)
 				{
 					quit(-1);
 				}
 				copyfile(argv[optind],argv[optind+1]);
 				quit(0);
 			case 's':
-				if(optind < 2 ||argc - optind != 2)
+				n ++;
+				if(optind < 2 ||argc - optind != 2 || n != 1)
 				{
 					quit(-1);
 				}
 				lnsoft(argv[optind],argv[optind+1]);
 				quit(0);
 			case 'f':
+				if (n != 1)
+				quit(-1);
 				dir_file = 1;
 				break;
 			case 'o':
+				if (n != 1)
+				quit(-1);
 				offset = atoi(optarg);
 				break;
 			case 'l':
+				if (n != 1)
+				quit(-1);
 				length = atoi(optarg);
 				break;
 			case '?':
