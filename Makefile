@@ -9,4 +9,4 @@ custom_demo:$(OBJS)
 	@$(CC) $(CFLAGS) -c -I include $<
 .PHONY:clean
 clean:
-	@rm -f *.o 
+	rm -f *.o 

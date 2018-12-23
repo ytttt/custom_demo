@@ -8,9 +8,28 @@
  * *   Return   : 0 true ;  -1 false
  * *************************************************************/
 #include "create.h"
-int create (char *filename,mode_t mode,int dir_file)
+int create (char *filename,char *s_mode,int dir_file)
 {
 	char is_cover = 'n';
+	int mode = 0;
+	int old_umask = umask(0);
+        while (*s_mode)
+       	{
+               if (*s_mode >= '0' && *s_mode <= '7')
+               {
+                        mode = (mode<<3) | (*s_mode-'0');
+               }
+  	       else
+               {
+			printf("Error: bad mode\n");
+			return 1;
+               }
+                        s_mode++;
+        }
+	if(mode == 0)
+	{
+		mode = 498;
+	}
 	if(access(filename,F_OK) == -1)
 	{
 		if(dir_file == 1)
@@ -63,5 +82,6 @@ int create (char *filename,mode_t mode,int dir_file)
 		printf("Invailed operation!\n");
 		return -1;
 	}
+	umask(old_umask);
 	return 0;
 }

@@ -10,6 +10,7 @@ int main(int argc, char *argv[])
 	int readenable = 0; 
 	int createnable = 0;
 	int n = 0;
+	char *s_mode = "0";
 	while( (opt = getopt(argc,argv,optstring)) != -1 )
 	{
 		switch (opt)
@@ -99,7 +100,11 @@ int main(int argc, char *argv[])
 		{
 			quit(-1);
 		}
-		create (argv[optind],0666,dir_file);
+		if(argv[optind +1]!=NULL)
+		{
+			s_mode = argv[optind+1];
+		}
+		create (argv[optind],s_mode,dir_file);
 	}
 	if(optind < 2)
 	{
